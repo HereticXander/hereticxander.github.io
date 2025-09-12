@@ -7,39 +7,95 @@
         body {
             font-family: monospace;
             margin: 2rem;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #000000; /* black background */
+            color: #39FF14;           /* neon green text */
             line-height: 1.4;
         }
+
         h1 {
             margin-bottom: 0.5rem;
+            animation: flicker 1.5s infinite;
+            text-align: center;
+            letter-spacing: 2px;
         }
+
         hr {
             border: 0;
-            border-top: 1px solid #ccc;
+            border-top: 2px solid #39FF14; /* neon horizontal line */
+            box-shadow: 0 0 10px #39FF14;
             margin: 1rem 0;
         }
+
         a {
-            color: #0000ff;
+            color: #39FF14;
             text-decoration: none;
+            text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 20px #39FF14;
+            transition: text-shadow 0.2s ease-in-out;
         }
+
         a:hover {
-            text-decoration: underline;
+            text-shadow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 40px #39FF14;
         }
+
         pre {
             white-space: pre-wrap;
         }
+
+        #logContainer {
+            border: 1px solid #39FF14;
+            padding: 1rem;
+            box-shadow: 0 0 15px #39FF14;
+            margin-bottom: 1rem;
+        }
+
         .log-entry {
             margin-bottom: 0.8rem;
+            animation: neonPulse 2s infinite alternate;
         }
+
         .bold {
             font-weight: bold;
+        }
+
+        /* Neon pulsing animation for log entries */
+        @keyframes neonPulse {
+            0% {
+                text-shadow:
+                    0 0 2px #39FF14,
+                    0 0 5px #39FF14,
+                    0 0 10px #39FF14,
+                    0 0 20px #39FF14;
+            }
+            100% {
+                text-shadow:
+                    0 0 5px #39FF14,
+                    0 0 10px #39FF14,
+                    0 0 20px #39FF14,
+                    0 0 40px #39FF14;
+            }
+        }
+
+        /* Flicker animation for header */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow:
+                    0 0 5px #39FF14,
+                    0 0 10px #39FF14,
+                    0 0 20px #39FF14,
+                    0 0 40px #39FF14;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.6;
+                text-shadow: 0 0 2px #39FF14;
+            }
         }
     </style>
 </head>
 <body>
 
 <h1>Bishop – Notes & Updates</h1>
+
 <pre>
 Welcome to my minimal text-only log website.
 Edit "log.txt" in this repository to add updates.
@@ -62,19 +118,14 @@ Links:
 </pre>
 
 <script>
-// Path to the log text file
 const logFile = 'log.txt';
 
-// Simple parser for bold and links
 function parseLine(line) {
-    // Bold: **text**
     line = line.replace(/\*\*(.*?)\*\*/g, '<span class="bold">$1</span>');
-    // Links: [text](url)
     line = line.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
     return line;
 }
 
-// Fetch the log
 fetch(logFile)
   .then(response => {
       if (!response.ok) throw new Error('Could not load log file.');
