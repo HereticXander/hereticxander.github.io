@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bishop – Notes & Updates</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 2rem;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+        }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 1rem 0;
+        }
+        a {
+            color: #0000ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+        .log-entry {
+            margin-bottom: 0.8rem;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bishop – Notes & Updates</h1>
+<pre>
+Welcome to my minimal text-only log website.
+Edit "log.txt" in this repository to add updates.
+Supports:
+- **bold text**
+- [link text](https://example.com)
+Newest updates appear first.
+</pre>
+
+<hr>
+
+<div id="logContainer"><pre>Loading log...</pre></div>
+
+<hr>
+
+<pre>
+Links:
+
+- GitHub → <a href="https://github.com/HereticXander">https://github.com/HereticXander</a>
+</pre>
+
+<script>
+// Path to the log text file
+const logFile = 'log.txt';
+
+// Simple parser for bold and links
+function parseLine(line) {
+    // Bold: **text**
+    line = line.replace(/\*\*(.*?)\*\*/g, '<span class="bold">$1</span>');
+    // Links: [text](url)
+    line = line.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+    return line;
+}
+
+// Fetch the log
+fetch(logFile)
+  .then(response => {
+      if (!response.ok) throw new Error('Could not load log file.');
+      return response.text();
+  })
+  .then(text => {
+      const lines = text.split('\n').filter(line => line.trim() !== '').reverse();
+      const formatted = lines.map(l => `<div class="log-entry">${parseLine(l)}</div>`).join('');
+      document.getElementById('logContainer').innerHTML = formatted;
+  })
+  .catch(err => {
+      document.getElementById('logContainer').innerHTML = `<pre>Error loading log: ${err}</pre>`;
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+13 Sep 2025: Added **formatted log entries** feature!
+12 Sep 2025: Started this minimal text website!
+10 Sep 2025: Learned a cool Bash trick for WiFi reconnections.
+08 Sep 2025: Published my [text-only website template](https://github.com/alex/text-site) on GitHub.
