@@ -1,4 +1,7 @@
+14 Sep 2025: Built a wifi 6 dashboard script because I couldnt confirm if my wireless 6 was functioning. turns out it is.
+13 Sep 2025: lets call this an accountabilabuddy. When do thing, log thing.
+13 Sep 2025: Wondered what to do with this now.....
 13 Sep 2025: Added **formatted log entries** feature!
 12 Sep 2025: Started this minimal text website!
 10 Sep 2025: Learned a cool Bash trick for WiFi reconnections.
-08 Sep 2025: Published my [text-only website template](https://github.com/alex/text-site) on GitHub.
+08 Sep 2025: Published my [text-only website template](https://github.com/HereticXander/hereticxander.github.io) on GitHub.
