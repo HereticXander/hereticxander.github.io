@@ -1,3 +1,4 @@
+14 Set 2025: Rewrote my wireless dashboard. broke the math. fixed the math. broke the SSID output. blah.
 14 Sep 2025: Built a wifi 6 dashboard script because I couldnt confirm if my wireless 6 was functioning. turns out it is.
 13 Sep 2025: lets call this an accountabilabuddy. When do thing, log thing.
 13 Sep 2025: Wondered what to do with this now.....
